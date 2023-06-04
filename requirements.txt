@@ -1,0 +1,13 @@
+ipykernel
+click
+
+scikit-learn
+numpy
+seaborn
+matplotlib
+pandas
+
+# Dev
+black[jupyter]
+isort
+flake8
