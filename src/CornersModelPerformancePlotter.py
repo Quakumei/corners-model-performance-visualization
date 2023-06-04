@@ -1,13 +1,13 @@
-import typing as tp
 import logging
+import typing as tp
 
+import click
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
 from sklearn.metrics import confusion_matrix
 
-import click
 
 class CornersModelPerformancePlotter:
     """
@@ -159,14 +159,25 @@ class CornersModelPerformancePlotter:
 
 
 @click.command()
-@click.option("--data-filename", default="data/deviation.json", help="Path to the data file")
-@click.option("--save-dir", default="plots", help="Directory to save the plots")
-@click.option("--darkgrid/--no-darkgrid", default=True, help="Enable dark grid in plots")
+@click.option(
+    "--data-filename",
+    default="data/deviation.json",
+    help="Path to the data file",
+)
+@click.option(
+    "--save-dir", default="plots", help="Directory to save the plots"
+)
+@click.option(
+    "--darkgrid/--no-darkgrid", default=True, help="Enable dark grid in plots"
+)
 def main(data_filename, save_dir, darkgrid):
     df = pd.read_json(data_filename)
-    plotter = CornersModelPerformancePlotter(save_dir=save_dir, darkgrid=darkgrid)
+    plotter = CornersModelPerformancePlotter(
+        save_dir=save_dir, darkgrid=darkgrid
+    )
     plotter.draw_plots(df)
     plt.show()
+
 
 if __name__ == "__main__":
     main()
